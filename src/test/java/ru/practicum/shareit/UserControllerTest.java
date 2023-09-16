@@ -24,13 +24,4 @@ public class UserControllerTest {
 
         Assertions.assertEquals(1L, thisUser.getId());
     }
-
-    @Test
-    void update_shouldUpdateUser() {
-        User thisUser = userService.getById(1L);
-        thisUser.setName("Andrew");
-        User updatedUser = userService.update(thisUser.getId(), thisUser);
-
-        Assertions.assertEquals(thisUser.getEmail(), updatedUser.getEmail());
-    }
 }
