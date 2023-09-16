@@ -17,7 +17,7 @@ public class UserRepositoryImpl implements UserRepository {
     private Long id = 0L;
 
     @Override
-    public User createUser(User user) {
+    public User create(User user) {
         if (user.getEmail() == null) {
             throw new ValidationException("Невалидный почтовый ящик");
         }
@@ -34,7 +34,7 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public User updateUser(Long id, User user) {
+    public User update(Long id, User user) {
         User thisUser = users.get(id);
         if (user.getEmail() != null) {
             if (!user.getEmail().equals(thisUser.getEmail())) {
@@ -55,7 +55,7 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public User getUserById(Long id) {
+    public User getById(Long id) {
         if (id == null || !users.containsKey(id)) {
             throw new ObjectNotFoundException("Пользователя с подобным идентификатором не существует");
         }
@@ -63,7 +63,7 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public void deleteUserById(Long id) {
+    public void deleteById(Long id) {
         if (id == null || !users.containsKey(id)) {
             throw new ValidationException("Пользователя с подобным идентификатором не существует");
         }

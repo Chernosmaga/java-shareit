@@ -27,7 +27,7 @@ public class ItemControllerTest {
 
     @Test
     void createItem_shouldCreateItem() {
-        User thisUser = userService.createUser(user);
+        User thisUser = userService.create(user);
         ItemDto thisItem = itemService.createItem(thisUser.getId(), item);
 
         Assertions.assertEquals(true, thisItem.getAvailable());
@@ -35,7 +35,7 @@ public class ItemControllerTest {
 
     @Test
     void search_shouldFindAnItem() {
-        User thisUser = userService.getUserById(1L);
+        User thisUser = userService.getById(1L);
         ItemDto thisItem = itemService.createItem(thisUser.getId(), item);
         List<ItemDto> list = itemService.search("Lap");
 

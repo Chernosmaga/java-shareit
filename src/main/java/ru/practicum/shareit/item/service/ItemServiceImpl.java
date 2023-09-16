@@ -18,7 +18,7 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public ItemDto createItem(Long userId, ItemDto item) {
         ItemDto thisItem = new ItemDto();
-        if (userRepository.getUserById(userId) != null) {
+        if (userRepository.getById(userId) != null) {
             thisItem = itemRepository.createItem(item);
             itemRepository.saveUsersItems(userId, thisItem.getId());
         }
@@ -28,7 +28,7 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public ItemDto updateItem(Long userId, Long itemId, ItemDto item) {
         ItemDto thisItem = new ItemDto();
-        if (userRepository.getUserById(userId) != null && itemRepository.getItemById(itemId) != null) {
+        if (userRepository.getById(userId) != null && itemRepository.getItemById(itemId) != null) {
             if (itemRepository.isUsersItem(userId, itemId)) {
                 thisItem = itemRepository.updateItem(itemId, item);
             } else {

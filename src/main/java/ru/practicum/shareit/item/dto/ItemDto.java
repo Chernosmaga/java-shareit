@@ -21,7 +21,7 @@ public class ItemDto {
     private String name;
     @NotNull(message = "Поле описания товара не должно быть пустым")
     private String description;
-    @NotNull(message = " Поле статуса доступности не может быть пустым")
+    @NotNull(message = "Поле статуса доступности не может быть пустым")
     private Boolean available;
     private User owner;
     private Boolean isRequested;

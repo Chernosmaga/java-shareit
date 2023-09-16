@@ -19,17 +19,17 @@ public class UserControllerTest {
     private final User user = new User("Josh", "joshesmail@mail.ru");
 
     @Test
-    void createUser_shouldCreateUser() {
-        User thisUser = userService.createUser(user);
+    void create_shouldCreateUser() {
+        User thisUser = userService.create(user);
 
         Assertions.assertEquals(1L, thisUser.getId());
     }
 
     @Test
-    void updateUser_shouldUpdateUser() {
-        User thisUser = userService.getUserById(1L);
+    void update_shouldUpdateUser() {
+        User thisUser = userService.getById(1L);
         thisUser.setName("Andrew");
-        User updatedUser = userService.updateUser(thisUser.getId(), thisUser);
+        User updatedUser = userService.update(thisUser.getId(), thisUser);
 
         Assertions.assertEquals(thisUser.getEmail(), updatedUser.getEmail());
     }
