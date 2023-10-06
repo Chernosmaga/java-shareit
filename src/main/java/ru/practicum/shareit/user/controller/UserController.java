@@ -1,16 +1,15 @@
 package ru.practicum.shareit.user.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import ru.practicum.shareit.user.model.User;
+import ru.practicum.shareit.user.dto.UserDto;
 import ru.practicum.shareit.user.service.UserService;
+import ru.practicum.shareit.util.Create;
+import ru.practicum.shareit.util.Update;
 
-import javax.validation.Valid;
 import java.util.List;
 
-/**
- * Класс-контроллер для сущности пользователя
- */
 @RestController
 @RequestMapping(path = "/users")
 @RequiredArgsConstructor
@@ -18,17 +17,17 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping
-    public User create(@Valid @RequestBody User user) {
+    public UserDto create(@Validated(Create.class) @RequestBody UserDto user) {
         return userService.create(user);
     }
 
     @PatchMapping("/{id}")
-    public User update(@PathVariable Long id, @Valid @RequestBody User user) {
+    public UserDto update(@PathVariable Long id, @Validated(Update.class) @RequestBody UserDto user) {
         return userService.update(id, user);
     }
 
     @GetMapping("/{id}")
-    public User getById(@PathVariable Long id) {
+    public UserDto getById(@PathVariable Long id) {
         return userService.getById(id);
     }
 
@@ -38,7 +37,7 @@ public class UserController {
     }
 
     @GetMapping
-    public List<User> getUsers() {
+    public List<UserDto> getUsers() {
         return userService.getUsers();
     }
 }

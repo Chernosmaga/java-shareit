@@ -3,32 +3,42 @@ package ru.practicum.shareit.item.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.practicum.shareit.user.model.User;
+import ru.practicum.shareit.booking.dto.BookingForItemDto;
+import ru.practicum.shareit.comment.dto.CommentDto;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import java.util.List;
 
-/**
- * Класс-модель DTO для создания объекта товара
- */
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class ItemDto {
     private Long id;
-    @NotNull(message = "Поле названия товара не должно быть пустым")
-    @NotBlank(message = "Поле названия товара не может состоять из пробелов")
     private String name;
-    @NotNull(message = "Поле описания товара не должно быть пустым")
     private String description;
-    @NotNull(message = "Поле статуса доступности не может быть пустым")
     private Boolean available;
-    private User owner;
-    private Boolean isRequested;
+    private BookingForItemDto lastBooking;
+    private BookingForItemDto nextBooking;
+    private List<CommentDto> comments;
 
-    public ItemDto(String name, String description, Boolean available) {
+    public ItemDto(Long id, String name, String description, Boolean available, List<CommentDto> comments) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.available = available;
+        this.comments = comments;
+    }
+
+    public ItemDto(String name,
+                   String description,
+                   Boolean available,
+                   BookingForItemDto lastBooking,
+                   BookingForItemDto nextBooking,
+                   List<CommentDto> comments) {
+        this.name = name;
+        this.description = description;
+        this.available = available;
+        this.lastBooking = lastBooking;
+        this.nextBooking = nextBooking;
+        this.comments = comments;
     }
 }

@@ -5,24 +5,30 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import ru.practicum.shareit.user.model.User;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import javax.persistence.*;
 
-/**
- * Класс-модель для создания объекта товара
- */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
+@Table(name = "items")
 public class Item {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull(message = "Поле названия товара не должно быть пустым")
-    @NotBlank(message = "Поле названия товара не может состоять из пробелов")
     private String name;
-    @NotNull(message = "Поле описания товара не должно быть пустым")
     private String description;
-    @NotNull(message = " Поле статуса доступности не может быть пустым")
     private Boolean available;
+    @ManyToOne
+    @JoinColumn(name = "owner_id")
     private User owner;
-    private Boolean isRequested;
+    @Column(name = "request_id")
+    private Long requestId;
+
+    public Item(Long id, String name, String description, Boolean available) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.available = available;
+    }
 }
