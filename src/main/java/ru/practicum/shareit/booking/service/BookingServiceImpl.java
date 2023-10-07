@@ -30,7 +30,7 @@ public class BookingServiceImpl implements BookingService {
     private final UserRepository userRepository;
     private final ItemRepository itemRepository;
     private final BookingMapper mapper;
-    private final Sort sort = Sort.by(Sort.Direction.DESC, "start");
+    private static final Sort sort = Sort.by(Sort.Direction.DESC, "start");
 
     @Transactional
     @Override
@@ -70,11 +70,7 @@ public class BookingServiceImpl implements BookingService {
         if (!thisBooking.getStatus().equals(Status.WAITING)) {
             throw new AccessException("Нельзя изменить статус");
         }
-        if (approved) {
-            thisBooking.setStatus(Status.APPROVED);
-        } else {
-            thisBooking.setStatus(Status.REJECTED);
-        }
+        thisBooking.setStatus(approved ? Status.APPROVED : Status.REJECTED);
         return mapper.toBookingDto(thisBooking);
     }
 

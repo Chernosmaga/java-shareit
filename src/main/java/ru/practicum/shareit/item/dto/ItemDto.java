@@ -27,18 +27,4 @@ public class ItemDto {
         this.available = available;
         this.comments = comments;
     }
-
-    public ItemDto(String name,
-                   String description,
-                   Boolean available,
-                   BookingForItemDto lastBooking,
-                   BookingForItemDto nextBooking,
-                   List<CommentDto> comments) {
-        this.name = name;
-        this.description = description;
-        this.available = available;
-        this.lastBooking = lastBooking;
-        this.nextBooking = nextBooking;
-        this.comments = comments;
-    }
 }
