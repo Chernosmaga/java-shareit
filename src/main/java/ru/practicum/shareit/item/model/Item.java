@@ -31,4 +31,9 @@ public class Item {
         this.description = description;
         this.available = available;
     }
+
+    public Item(Long id, String name, String description, Boolean available, Long requestId) {
+        this(id, name, description, available);
+        this.requestId = requestId;
+    }
 }
