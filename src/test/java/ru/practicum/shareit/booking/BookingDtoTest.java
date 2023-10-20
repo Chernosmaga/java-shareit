@@ -26,7 +26,7 @@ public class BookingDtoTest {
     private final BookingDto booking = new BookingDto(
             1L,
             LocalDateTime.of(2020, 10, 10, 10, 10, 0),
-            LocalDateTime.of (2020, 12, 10, 10, 10, 0),
+            LocalDateTime.of(2020, 12, 10, 10, 10, 0),
             Status.WAITING,
             user,
             item);

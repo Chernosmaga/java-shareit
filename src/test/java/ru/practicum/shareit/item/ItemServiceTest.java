@@ -48,8 +48,7 @@ public class ItemServiceTest {
             "A toy",
             "An old ugly toy",
             true,
-            null
-    );
+            null);
     private final ItemShortDto laptop = new ItemShortDto(
             6L,
             "An old laptop",
