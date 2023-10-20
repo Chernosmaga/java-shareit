@@ -1,6 +1,7 @@
 package ru.practicum.shareit.user;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -40,8 +41,9 @@ public class UserControllerTest {
             new UserDto(2L, "Maria", "masha@mail.ru"),
             new UserDto(3L, "Matthew", "matthew@ya.ru"));
 
+    @SneakyThrows
     @Test
-    void create_shouldCreateUser() throws Exception {
+    void create_shouldCreateUser() {
         when(userService.create(any()))
                 .thenReturn(userDto);
 
@@ -56,8 +58,9 @@ public class UserControllerTest {
                 .andExpect(jsonPath("$.email", is(userDto.getEmail())));
     }
 
+    @SneakyThrows
     @Test
-    void getById_shouldFindUserById() throws Exception {
+    void getById_shouldFindUserById() {
         when(userService.getById(any(Long.class)))
                 .thenReturn(userDto);
 
@@ -69,14 +72,16 @@ public class UserControllerTest {
                 .andExpect(jsonPath("$.email", is(userDto.getEmail())));
     }
 
+    @SneakyThrows
     @Test
-    void deleteUser() throws Exception {
+    void deleteUser() {
         mvc.perform(delete("/users/1"))
                 .andExpect(status().isOk());
     }
 
+    @SneakyThrows
     @Test
-    void updateUser() throws Exception {
+    void updateUser() {
         when(userService.update(any(), any()))
                 .thenReturn(userDto);
 
@@ -92,8 +97,9 @@ public class UserControllerTest {
                 .andExpect(jsonPath("$.email", is(userDto.getEmail())));
     }
 
+    @SneakyThrows
     @Test
-    void getUsers() throws Exception {
+    void getUsers() {
         when(userService.getUsers())
                 .thenReturn(listUserDto);
         mvc.perform(get("/users")

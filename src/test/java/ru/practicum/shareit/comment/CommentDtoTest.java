@@ -1,5 +1,6 @@
 package ru.practicum.shareit.comment;
 
+import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.json.JsonTest;
@@ -21,8 +22,9 @@ public class CommentDtoTest {
             "Andrew",
             LocalDateTime.of(2020, 10, 15, 3, 30, 0));
 
+    @SneakyThrows
     @Test
-    void testCommentDto() throws Exception {
+    void testCommentDto() {
         JsonContent<CommentDto> result = json.write(comment);
 
         assertThat(result).extractingJsonPathNumberValue("$.id").isEqualTo(1);

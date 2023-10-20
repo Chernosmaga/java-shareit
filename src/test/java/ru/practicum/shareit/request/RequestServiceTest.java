@@ -90,7 +90,7 @@ public class RequestServiceTest {
     }
 
     @Test
-    void getRequestsByOwner_shouldReturnOwnerRequests () {
+    void getRequestsByOwner_shouldReturnOwnerRequests() {
         UserDto thisAndrew = userService.create(andrew);
         RequestDto andrewsRequest = requestService.create(thisAndrew.getId(), request,
                 LocalDateTime.of(2022, 10, 12, 21, 40, 0));

@@ -1,5 +1,6 @@
 package ru.practicum.shareit.booking;
 
+import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.json.JsonTest;
@@ -30,8 +31,9 @@ public class BookingDtoTest {
             user,
             item);
 
+    @SneakyThrows
     @Test
-    void testBookingDto() throws Exception {
+    void testBookingDto() {
         JsonContent<BookingDto> result = json.write(booking);
 
         assertThat(result).extractingJsonPathNumberValue("$.id").isEqualTo(1);

@@ -1,6 +1,7 @@
 package ru.practicum.shareit.request;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -45,8 +46,9 @@ public class RequestControllerTest {
             LocalDateTime.of(2022, 12, 10, 5, 5, 0),
             null);
 
+    @SneakyThrows
     @Test
-    void create_shouldCreateRequest() throws Exception {
+    void create_shouldCreateRequest() {
         when(requestService.create(any(Long.class), any(), any(LocalDateTime.class)))
                 .thenReturn(request);
 
@@ -66,8 +68,9 @@ public class RequestControllerTest {
                         is(request.getCreated().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME))));
     }
 
+    @SneakyThrows
     @Test
-    void getRequestById_shouldReturnListOfRequests() throws Exception {
+    void getRequestById_shouldReturnListOfRequests() {
         when(requestService.getRequestById(any(Long.class), any(Long.class)))
                 .thenReturn(request);
 
@@ -87,8 +90,9 @@ public class RequestControllerTest {
                         is(request.getCreated().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME))));
     }
 
+    @SneakyThrows
     @Test
-    void getRequestsByOwner_shouldReturnRequestsByOwner() throws Exception {
+    void getRequestsByOwner_shouldReturnRequestsByOwner() {
         when(requestService.getRequestsByOwner(any(Long.class)))
                 .thenReturn(List.of(request));
 

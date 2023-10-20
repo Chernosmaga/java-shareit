@@ -1,6 +1,7 @@
 package ru.practicum.shareit.item;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -50,8 +51,9 @@ public class ItemControllerTest {
             andrew.getName(),
             LocalDateTime.now().minusDays(30));
 
+    @SneakyThrows
     @Test
-    void create_shouldCreateItem() throws Exception {
+    void create_shouldCreateItem() {
         when(itemService.create(any(Long.class), any()))
                 .thenReturn(toy);
 
@@ -67,8 +69,9 @@ public class ItemControllerTest {
                 .andExpect(jsonPath("$.available", is(toy.getAvailable())));
     }
 
+    @SneakyThrows
     @Test
-    void getById_shouldReturnItemById() throws Exception {
+    void getById_shouldReturnItemById() {
         when(itemService.getById(any(Long.class), any(Long.class)))
                 .thenReturn(toy);
 
@@ -86,8 +89,9 @@ public class ItemControllerTest {
                 .andExpect(jsonPath("$.available", is(toy.getAvailable())));
     }
 
+    @SneakyThrows
     @Test
-    void getByUserId_shouldReturnListOfItems() throws Exception {
+    void getByUserId_shouldReturnListOfItems() {
         when(itemService.getByUserId(any(Long.class), any(Integer.class), nullable(Integer.class)))
                 .thenReturn(List.of(toy));
 
@@ -112,8 +116,9 @@ public class ItemControllerTest {
                 .andExpect(status().isOk());
     }
 
+    @SneakyThrows
     @Test
-    void update_shouldUpdateItem() throws Exception {
+    void update_shouldUpdateItem() {
         when(itemService.update(any(Long.class), any(Long.class), any()))
                 .thenReturn(toy);
 
@@ -131,8 +136,9 @@ public class ItemControllerTest {
                 .andExpect(jsonPath("$.available", is(toy.getAvailable())));
     }
 
+    @SneakyThrows
     @Test
-    void search_shouldReturnItemsList() throws Exception {
+    void search_shouldReturnItemsList() {
         when(itemService.search(any(String.class), any(Integer.class), nullable(Integer.class)))
                 .thenReturn(List.of(toy));
 
@@ -150,8 +156,9 @@ public class ItemControllerTest {
                 .andExpect(jsonPath("$.[0].available", is(toy.getAvailable())));
     }
 
+    @SneakyThrows
     @Test
-    void createComment_shouldCreateComment() throws Exception {
+    void createComment_shouldCreateComment() {
         when(itemService.createComment(any(Long.class), any(Long.class), any()))
                 .thenReturn(comment);
 

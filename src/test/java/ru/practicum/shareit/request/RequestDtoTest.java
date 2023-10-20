@@ -1,5 +1,6 @@
 package ru.practicum.shareit.request;
 
+import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.json.JsonTest;
@@ -27,8 +28,9 @@ public class RequestDtoTest {
             LocalDateTime.of(2023, 10, 10, 14, 30, 0),
             null);
 
+    @SneakyThrows
     @Test
-    void testRequestDto() throws Exception {
+    void testRequestDto() {
         JsonContent<RequestDto> result = json.write(request);
 
         assertThat(result).extractingJsonPathNumberValue("$.id").isEqualTo(1);

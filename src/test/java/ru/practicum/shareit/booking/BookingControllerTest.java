@@ -1,6 +1,7 @@
 package ru.practicum.shareit.booking;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -52,8 +53,9 @@ public class BookingControllerTest {
             new BookingDto.Item(item.getId(), item.getName()));
 
 
+    @SneakyThrows
     @Test
-    void getById_shouldReturnBookingById() throws Exception {
+    void getById_shouldReturnBookingById() {
         when(bookingService.getById(any(Long.class), any()))
                 .thenReturn(outputBooking);
 
@@ -72,8 +74,9 @@ public class BookingControllerTest {
                         is(outputBooking.getEnd().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME))));
     }
 
+    @SneakyThrows
     @Test
-    void update_shouldUpdateBooking() throws Exception {
+    void update_shouldUpdateBooking() {
         when(bookingService.updateStatus(any(Long.class), any(Long.class), any(Boolean.class)))
                 .thenReturn(outputBooking);
 

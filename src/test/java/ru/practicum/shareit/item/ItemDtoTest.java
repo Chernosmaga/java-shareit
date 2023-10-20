@@ -1,5 +1,6 @@
 package ru.practicum.shareit.item;
 
+import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.json.JsonTest;
@@ -21,8 +22,9 @@ public class ItemDtoTest {
             null,
             null);
 
+    @SneakyThrows
     @Test
-    void testItemDto() throws Exception {
+    void testItemDto() {
         JsonContent<ItemDto> result = json.write(itemDto);
 
         assertThat(result).extractingJsonPathNumberValue("$.id").isEqualTo(1);
