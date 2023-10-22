@@ -74,14 +74,14 @@ public class UserControllerTest {
 
     @SneakyThrows
     @Test
-    void deleteUser() {
+    void deleteUser_shouldDeleteUserById() {
         mvc.perform(delete("/users/1"))
                 .andExpect(status().isOk());
     }
 
     @SneakyThrows
     @Test
-    void updateUser() {
+    void updateUser_shouldUpdateUserData() {
         when(userService.update(any(), any()))
                 .thenReturn(userDto);
 
@@ -99,7 +99,7 @@ public class UserControllerTest {
 
     @SneakyThrows
     @Test
-    void getUsers() {
+    void getUsers_shouldReturnListOfUsers() {
         when(userService.getUsers())
                 .thenReturn(listUserDto);
         mvc.perform(get("/users")

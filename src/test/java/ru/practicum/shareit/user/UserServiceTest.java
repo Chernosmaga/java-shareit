@@ -52,7 +52,7 @@ public class UserServiceTest {
     }
 
     @Test
-    void shouldExceptionWhenCreateUserWithExistEmail() {
+    void shouldThrowExceptionIfEmailExists() {
         when(userRepository.save(any()))
                 .thenThrow(new DataIntegrityViolationException(""));
         final ObjectAlreadyExistsException exception = assertThrows(
