@@ -58,6 +58,12 @@ public class RequestServiceTest {
     }
 
     @Test
+    void create_shouldThrowExceptionIfUserIdIsIncorrect() {
+        assertThrows(ObjectNotFoundException.class,
+                () -> requestService.create(999L, secondRequest, LocalDateTime.now()));
+    }
+
+    @Test
     void getById_shouldThrowExceptionIfIdIsIncorrect() {
         UserDto thisUser = userService.create(andrew);
 
@@ -88,4 +94,29 @@ public class RequestServiceTest {
 
         assertThat(returnedRequest.getDescription(), equalTo(request.getDescription()));
     }
+
+    @Test
+    void getExistingRequests_shouldReturnRequestsIfSizeNull() {
+        UserDto thisAndrew = userService.create(andrew);
+        UserDto thisAnna = userService.create(anna);
+        RequestDto thisFirstRequest = requestService.create(thisAnna.getId(), request, LocalDateTime.now());
+        RequestDto thisSecondRequest = requestService.create(thisAnna.getId(), secondRequest, LocalDateTime.now());
+        List<RequestDto> requests = requestService.getExistingRequests(thisAndrew.getId(), 0, null);
+
+        assertTrue(requests.contains(thisFirstRequest));
+        assertTrue(requests.contains(thisSecondRequest));
+    }
+
+    @Test
+    void getExistingRequests_shouldReturnRequests() {
+        UserDto thisAndrew = userService.create(andrew);
+        UserDto thisAnna = userService.create(anna);
+        RequestDto thisFirstRequest = requestService.create(thisAnna.getId(), request, LocalDateTime.now());
+        RequestDto thisSecondRequest = requestService.create(thisAnna.getId(), secondRequest, LocalDateTime.now());
+        List<RequestDto> requests = requestService.getExistingRequests(thisAndrew.getId(), 0, 10);
+
+        assertTrue(requests.contains(thisFirstRequest));
+        assertTrue(requests.contains(thisSecondRequest));
+    }
+
 }
