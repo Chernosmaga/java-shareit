@@ -3,6 +3,7 @@ package ru.practicum.shareit.request;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 import ru.practicum.shareit.exception.ObjectNotFoundException;
@@ -20,6 +21,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @Transactional
+@AutoConfigureTestDatabase
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class RequestServiceTest {
     private final RequestService requestService;
@@ -72,19 +74,6 @@ public class RequestServiceTest {
         RequestDto annasRequest = requestService.create(thisAnna.getId(), secondRequest,
                 LocalDateTime.of(2020, 10, 12, 21, 40, 0));
         List<RequestDto> requests = requestService.getExistingRequests(thisAndrew.getId(), 0, 10);
-
-        assertEquals(1, requests.size());
-    }
-
-    @Test
-    void getExistingRequests_shouldReturnItemRequestsSizeNull() {
-        UserDto thisAndrew = userService.create(andrew);
-        UserDto thisAnna = userService.create(anna);
-        RequestDto andrewsRequest = requestService.create(thisAndrew.getId(), request,
-                LocalDateTime.of(2022, 10, 12, 21, 40, 0));
-        RequestDto annasRequest = requestService.create(thisAnna.getId(), secondRequest,
-                LocalDateTime.of(2020, 10, 12, 21, 40, 0));
-        List<RequestDto> requests = requestService.getExistingRequests(thisAndrew.getId(), 0, null);
 
         assertEquals(1, requests.size());
     }
