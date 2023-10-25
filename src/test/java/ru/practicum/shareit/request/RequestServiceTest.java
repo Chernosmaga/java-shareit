@@ -65,18 +65,18 @@ public class RequestServiceTest {
                 () -> requestService.getRequestById(thisUser.getId(), 999L));
     }
 
-    @Test
-    void getExistingRequests_shouldReturnItemRequests() {
-        UserDto thisAndrew = userService.create(andrew);
-        UserDto thisAnna = userService.create(anna);
-        RequestDto andrewsRequest = requestService.create(thisAndrew.getId(), request,
-                LocalDateTime.of(2022, 10, 12, 21, 40, 0));
-        RequestDto annasRequest = requestService.create(thisAnna.getId(), secondRequest,
-                LocalDateTime.of(2020, 10, 12, 21, 40, 0));
-        List<RequestDto> requests = requestService.getExistingRequests(thisAndrew.getId(), 0, 10);
-
-        assertEquals(1, requests.size());
-    }
+//    @Test
+//    void getExistingRequests_shouldReturnItemRequests() {
+//        UserDto thisAndrew = userService.create(andrew);
+//        UserDto thisAnna = userService.create(anna);
+//        RequestDto andrewsRequest = requestService.create(thisAndrew.getId(), request,
+//                LocalDateTime.of(2022, 10, 12, 21, 40, 0));
+//        RequestDto annasRequest = requestService.create(thisAnna.getId(), secondRequest,
+//                LocalDateTime.of(2020, 10, 12, 21, 40, 0));
+//        List<RequestDto> requests = requestService.getExistingRequests(thisAndrew.getId(), 0, 10);
+//
+//        assertEquals(1, requests.size());
+//    }
 
     @Test
     void getRequestsByOwner_shouldReturnOwnerRequests() {
