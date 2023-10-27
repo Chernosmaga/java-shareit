@@ -41,12 +41,6 @@ public class RequestServiceTest {
             andrew,
             LocalDateTime.of(2022, 10, 12, 21, 40, 0),
             null);
-    private final RequestDto secondRequest = new RequestDto(
-            22L,
-            "I need a comb",
-            anna,
-            LocalDateTime.of(2020, 10, 12, 21, 40, 0),
-            null);
 
     @Test
     void create_shouldCreateRequest() {
@@ -60,7 +54,7 @@ public class RequestServiceTest {
     @Test
     void create_shouldThrowExceptionIfUserIdIsIncorrect() {
         assertThrows(ObjectNotFoundException.class,
-                () -> requestService.getRequestById(999L, 999L));
+                () -> requestService.create(999L, request, LocalDateTime.now()));
     }
 
     @Test

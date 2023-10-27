@@ -11,6 +11,8 @@ import ru.practicum.shareit.booking.service.BookingService;
 import ru.practicum.shareit.comment.dto.CommentDto;
 import ru.practicum.shareit.comment.dto.CommentShortDto;
 import ru.practicum.shareit.comment.service.CommentService;
+import ru.practicum.shareit.exception.AccessException;
+import ru.practicum.shareit.exception.ObjectNotFoundException;
 import ru.practicum.shareit.item.dto.ItemDto;
 import ru.practicum.shareit.item.dto.ItemShortDto;
 import ru.practicum.shareit.item.service.ItemService;
@@ -22,6 +24,7 @@ import java.util.List;
 
 import static java.lang.Thread.sleep;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
 @Transactional
@@ -72,5 +75,32 @@ public class CommentServiceTest {
         List<CommentDto> thisComment = commentService.getCommentsByItemId(thisItem.getId());
 
         assertFalse(thisComment.isEmpty());
+    }
+
+    @Test
+    void createComment_shouldThrowExceptionIfUserIdIsIncorrect() {
+        UserDto thisUser = userService.create(maria);
+        ItemDto thisItem = itemService.create(thisUser.getId(), item);
+
+        assertThrows(ObjectNotFoundException.class,
+                () -> itemService.createComment(thisItem.getId(), 999L, comment));
+    }
+
+    @Test
+    void createComment_shouldThrowExceptionIfItemIdIsIncorrect() {
+        UserDto thisUser = userService.create(maria);
+
+        assertThrows(ObjectNotFoundException.class,
+                () -> itemService.createComment(999L, thisUser.getId(), comment));
+    }
+
+    @Test
+    void createComment_shouldThrowExceptionIfUserDidntBookItem() {
+        UserDto thisUser = userService.create(maria);
+        UserDto thisAndrew = userService.create(andrew);
+        ItemDto thisItem = itemService.create(thisUser.getId(), item);
+
+        assertThrows(AccessException.class,
+                () -> itemService.createComment(thisItem.getId(), thisAndrew.getId(), comment));
     }
 }
