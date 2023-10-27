@@ -19,7 +19,6 @@ import static org.junit.jupiter.api.Assertions.*;
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class UserServiceTest {
     private final UserService userService;
-
     private final UserDto user = new UserDto(1L, "Alexander", "alex@ya.ru");
 
     @Test
