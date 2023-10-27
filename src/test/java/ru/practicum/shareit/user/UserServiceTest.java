@@ -13,7 +13,6 @@ import ru.practicum.shareit.user.service.UserService;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-
 @Transactional
 @AutoConfigureTestDatabase
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
