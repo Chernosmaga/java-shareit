@@ -92,6 +92,28 @@ public class RequestControllerTest {
 
     @SneakyThrows
     @Test
+    void getExistingRequests_shouldReturnListOfRequests() {
+        when(requestService.getExistingRequests(any(Long.class), any(Integer.class), any(Integer.class)))
+                .thenReturn(List.of(request));
+
+        mvc.perform(get("/requests/all")
+                        .content(objectMapper.writeValueAsString(request))
+                        .characterEncoding(StandardCharsets.UTF_8)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON)
+                        .header("X-Sharer-User-Id", 1))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.[0].id", is(request.getId()), Long.class))
+                .andExpect(jsonPath("$.[0].description", is(request.getDescription())))
+                .andExpect(jsonPath("$.[0].requester.id", is(request.getRequester().getId()), Long.class))
+                .andExpect(jsonPath("$.[0].requester.name", is(request.getRequester().getName())))
+                .andExpect(jsonPath("$.[0].requester.email", is(request.getRequester().getEmail())))
+                .andExpect(jsonPath("$.[0].created",
+                        is(request.getCreated().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME))));
+    }
+
+    @SneakyThrows
+    @Test
     void getRequestsByOwner_shouldReturnRequestsByOwner() {
         when(requestService.getRequestsByOwner(any(Long.class)))
                 .thenReturn(List.of(request));
