@@ -10,7 +10,7 @@ import java.util.List;
 public interface BookingService {
     BookingDto create(Long userId, BookingShortDto booking);
 
-    BookingDto updateStatus(Long userId, Long booking, Boolean approved);
+    BookingDto updateStatus(Long userId, Long bookingId, Boolean approved);
 
     BookingDto getById(Long bookingId, Long userId);
 

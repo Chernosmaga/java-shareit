@@ -22,4 +22,5 @@ public class BookingShortDto {
     @NotNull
     private Long itemId;
 
+
 }

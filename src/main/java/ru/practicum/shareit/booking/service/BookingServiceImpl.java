@@ -68,7 +68,7 @@ public class BookingServiceImpl implements BookingService {
 
     @Transactional
     @Override
-    public BookingDto updateStatus(Long bookingId, Long userId, Boolean approved) {
+    public BookingDto updateStatus(Long userId, Long bookingId, Boolean approved) {
         Booking thisBooking = bookingRepository.findById(bookingId).orElseThrow(
                 () -> new ObjectNotFoundException("Бронирование не найдено"));
         if (!userId.equals(thisBooking.getItem().getOwner().getId())) {
