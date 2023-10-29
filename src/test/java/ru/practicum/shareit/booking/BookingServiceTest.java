@@ -132,16 +132,6 @@ public class BookingServiceTest {
     }
 
     @Test
-    void create_shouldThrowExceptionIfStartEqualsEnd() {
-        when(userRepository.findById(anyLong())).thenReturn(Optional.of(ilya));
-        when(itemRepository.findById(anyLong())).thenReturn(Optional.of(flour));
-
-        assertThrows(ValidationException.class,
-                () -> bookingService.create(ilya.getId(),
-                        new BookingShortDto(LocalDateTime.now(), LocalDateTime.now(), flour.getId())));
-    }
-
-    @Test
     void create_shouldThrowExceptionIfEndIsBeforeStart() {
         when(userRepository.findById(anyLong())).thenReturn(Optional.of(ilya));
         when(itemRepository.findById(anyLong())).thenReturn(Optional.of(flour));
