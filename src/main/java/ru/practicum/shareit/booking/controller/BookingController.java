@@ -26,7 +26,7 @@ public class BookingController {
     public BookingDto updateStatus(@PathVariable Long bookingId,
                                    @RequestHeader("X-Sharer-User-Id") Long userId,
                                    @RequestParam Boolean approved) {
-        return bookingService.updateStatus(bookingId, userId, approved);
+        return bookingService.updateStatus(userId, bookingId, approved);
     }
 
     @GetMapping("/{bookingId}")
