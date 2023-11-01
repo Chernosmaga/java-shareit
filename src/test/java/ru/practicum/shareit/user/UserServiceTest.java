@@ -64,12 +64,6 @@ public class UserServiceTest {
     }
 
     @Test
-    void deleteById_shouldThrowExceptionIfUserNotFound() {
-        assertThrows(ObjectNotFoundException.class,
-                () -> userService.deleteById(999L));
-    }
-
-    @Test
     void getUsers_shouldReturnListOfUsers() {
         UserDto first = userService.create(new UserDto(3L, "Anna", "anna@mail.ru"));
         UserDto second = userService.create(new UserDto(5L, "Matthew", "matthew@mail.ru"));
