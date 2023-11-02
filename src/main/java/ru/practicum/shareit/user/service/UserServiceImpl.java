@@ -1,12 +1,14 @@
 package ru.practicum.shareit.user.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.practicum.shareit.exception.ObjectAlreadyExistsException;
 import ru.practicum.shareit.exception.ObjectNotFoundException;
+import ru.practicum.shareit.user.dto.UserDto;
 import ru.practicum.shareit.user.mapper.UserMapper;
 import ru.practicum.shareit.user.model.User;
-import ru.practicum.shareit.user.dto.UserDto;
 import ru.practicum.shareit.user.repository.UserRepository;
 
 import java.util.List;
@@ -22,8 +24,12 @@ public class UserServiceImpl implements UserService {
     @Transactional
     @Override
     public UserDto create(UserDto user) {
-        User thisUser = mapper.toUser(user);
-        return mapper.toUserDto(repository.save(thisUser));
+        try {
+            User thisUser = mapper.toUser(user);
+            return mapper.toUserDto(repository.save(thisUser));
+        } catch (DataIntegrityViolationException exception) {
+            throw new ObjectAlreadyExistsException("Данные о пользователе уже есть в системе");
+        }
     }
 
     @Transactional
