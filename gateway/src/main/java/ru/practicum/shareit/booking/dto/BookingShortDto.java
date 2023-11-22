@@ -1,7 +1,7 @@
-package ru.practicum.shateit.booking.dto;
+package ru.practicum.shareit.booking.dto;
 
 import lombok.Data;
-import ru.practicum.shateit.util.Create;
+import ru.practicum.shareit.util.Create;
 
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotNull;

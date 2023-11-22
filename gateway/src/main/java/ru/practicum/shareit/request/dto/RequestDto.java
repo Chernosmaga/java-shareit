@@ -1,9 +1,9 @@
-package ru.practicum.shateit.request.dto;
+package ru.practicum.shareit.request.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.practicum.shateit.util.Create;
+import ru.practicum.shareit.util.Create;
 
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;

@@ -1,13 +1,13 @@
-package ru.practicum.shateit.user;
+package ru.practicum.shareit.user;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import ru.practicum.shateit.user.dto.UserDto;
-import ru.practicum.shateit.util.Create;
-import ru.practicum.shateit.util.Update;
+import ru.practicum.shareit.user.dto.UserDto;
+import ru.practicum.shareit.util.Create;
+import ru.practicum.shareit.util.Update;
 
 @Controller
 @RequestMapping(path = "/users")

@@ -1,12 +1,12 @@
-package ru.practicum.shateit.booking;
+package ru.practicum.shareit.booking;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import ru.practicum.shateit.booking.dto.BookingShortDto;
-import ru.practicum.shateit.util.Create;
+import ru.practicum.shareit.booking.dto.BookingShortDto;
+import ru.practicum.shareit.util.Create;
 
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;

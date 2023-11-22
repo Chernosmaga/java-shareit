@@ -1,10 +1,10 @@
-package ru.practicum.shateit.user.dto;
+package ru.practicum.shareit.user.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.practicum.shateit.util.Create;
-import ru.practicum.shateit.util.Update;
+import ru.practicum.shareit.util.Create;
+import ru.practicum.shareit.util.Update;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;

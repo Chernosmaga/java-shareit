@@ -1,4 +1,4 @@
-package ru.practicum.shateit.enums;
+package ru.practicum.shareit.enums;
 
 public enum State {
     ALL,

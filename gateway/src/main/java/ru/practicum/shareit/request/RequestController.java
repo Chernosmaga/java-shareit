@@ -1,12 +1,12 @@
-package ru.practicum.shateit.request;
+package ru.practicum.shareit.request;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import ru.practicum.shateit.request.dto.RequestDto;
-import ru.practicum.shateit.util.Create;
+import ru.practicum.shareit.request.dto.RequestDto;
+import ru.practicum.shareit.util.Create;
 
 @Controller
 @RequestMapping("/requests")

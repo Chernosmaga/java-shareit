@@ -1,13 +1,13 @@
-package ru.practicum.shateit.item;
+package ru.practicum.shareit.item;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import ru.practicum.shateit.item.dto.CommentShortDto;
-import ru.practicum.shateit.item.dto.ItemShortDto;
-import ru.practicum.shateit.util.Create;
+import ru.practicum.shareit.item.dto.CommentShortDto;
+import ru.practicum.shareit.item.dto.ItemShortDto;
+import ru.practicum.shareit.util.Create;
 
 import javax.validation.Valid;
 
